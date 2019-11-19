@@ -1,0 +1,239 @@
+####################################################################################################
+#
+#                               LOOTBOXES PLUGIN BY YANNI_
+#
+####################################################################################################
+
+
+
+
+
+
+
+
+
+
+####################################################################################################
+# GENERAL NOTES
+####################################################################################################
+# - Any non-numerical values must be wrapped in single-quotes (''), except boolean values such as
+#   "repeats: (true/false)" in that case, true and false may be left alone.
+# - Add formatting combinations between the '' at any point to convert all following characters
+#   to the specified format and color.
+# - Use the color/format combinations that are as listed here: https://wiki.ess3.net/mc/
+#   for formatting and coloring. Do not add these combinations to your possibleOutcomes in the
+#   lootbox configuration settings unless you are using them in a command such
+#   as "broadcast &b&lHELLO!".
+# - Some fields may be omitted from the lootbox configuration and the custom item configuration
+#   not including these will result in them defaulting to a value. If the field is included but
+#   left blank, it will most likely cause errors, so if you would like to let something fall back
+#   to the default, delete the field (this is the part that says "fieldName:" and the line
+#   that goes with it)
+####################################################################################################
+
+
+
+
+
+
+
+
+
+
+####################################################################################################
+# GENERAL SETTINGS
+####################################################################################################
+# - This indicator will be at the beginning of the name of every lootbox, it
+#   is used to tell the program it is genuinely a lootbox. It is included automatically.
+# - Only change this if you understand what it is for, it is not visible in game, only added
+#   to the start of every lootbox's name to indicate it is real.
+# - If you have a plugin that allows for renaming items using color codes, if the players know this
+#   combination, they may be able to create counterfeit lootboxes.
+# - CHANGING THIS WILL INVALIDATE ALL PREVIOUSLY SPAWNED IN LOOTBOXES.
+####################################################################################################
+lootboxIndicator: '&c&b&c&b&c&b&c&b&r&r&r'
+####################################################################################################
+
+
+
+
+
+
+
+
+
+
+####################################################################################################
+# CUSTOM ITEM CONFIGURATION
+####################################################################################################
+# These are items that may be found in the lootboxes, or spawned in seperately
+####################################################################################################
+# Follow this format for each customItem
+####################################################################################################
+# customItems:
+#   coolSword:              <------------- This is not the name, just the tag used to spawn it in.
+#     displayName: '&c&lCool Sword'
+#     lore:
+#     - '&b&lA sword that is really cool'
+#     - 'Its just cool'
+#     type: 'DIAMOND_SWORD'
+#     enchantments:
+#       - 'unbreaking 3'
+#       - 'efficiency 5'
+#       - 'fortune 3'
+#     damage: 0
+####################################################################################################
+# IMPORTANT NOTES
+####################################################################################################
+# - Again, all non-numbers must be wrapped in '' or single-quotes. The level of the enchantment
+#   is not solely a number and should therefore be INCLUDED in the '' or single-quotes.
+####################################################################################################
+# - Make sure the item is damageable if you are setting the damage to something other than 0.
+# - Seperate enchantments from their level using a space.
+####################################################################################################
+customItems:
+  coolSword:
+    displayName: '&c&lCool Sword'
+    lore:
+      - '&b&lA sword that is really cool'
+      - '&7Its just cool'
+    type: 'DIAMOND_SWORD'
+    enchantments:
+      - 'unbreaking 3'
+      - 'efficiency 5'
+      - 'fortune 3'
+    damage: 0
+####################################################################################################
+
+
+
+
+
+
+
+
+
+
+####################################################################################################
+# LOOTBOX CONFIGURATION
+####################################################################################################
+# These are the lootboxes that can be opened to generate certain commands or items
+####################################################################################################
+# Follow this format for each lootbox
+####################################################################################################
+# lootboxes:
+#   winter2019:              <------------ THIS IS AN IDENTIFIER, NOT THE NAME, CANNOT HAVE SPACES
+#     repeats: false
+#     outcomesToGenerateMin: 2
+#     outcomesToGenerateMax: 2
+#     possibleOutcomes:
+#       - '(exp give %name% 10)'
+#       - 'DIAMOND'
+#     minAmtPerOutcome:
+#       - 1
+#       - 5
+#     maxAmtPerOutcome:
+#       - 2
+#       - 10
+#     chancePerOutcome:
+#       - 0.5
+#       - 0.5
+#     lootboxItem: 'ENDER_CHEST'
+#     lootboxName: '&e&lSummer 2019 Lootbox'
+#     lootboxLore:
+#       - '&ePossible drops:'
+#       - '&65 - 10 Diamonds, &610 - 20 XP'
+#     particleTypeOnOpening: 'FLAME'
+#     soundEffectToPlayOnOpening: 'EXTINGUISH'
+#     openingMessage: '%name% just opened a %lootbox%&r, get yours today at website.com!'
+####################################################################################################
+# IMPORTANT NOTES
+####################################################################################################
+# - All lists under the possibleOutcomes, minAmtPerOutcome, maxAmtPerOutcome, and chancePerOutcome
+#   categories must be the same length
+# - Again, all non-numbers must be wrapped in '' or single-quotes except true/false
+#   in "repeats: (true/false)"
+# - For a specified drop/execution amount, it is recommended that you do not exceed 10,000, but
+#   the hard limit is 2,147,483,647 although that will definitely crash the server & game.
+####################################################################################################
+# - In possibleOutcomes: commands must be surrounded with parentheses () INSIDE the single-quotes ''
+#   i.e. '(exp give %name% 10)' and custom items from the custom item list above must be wrapped in
+#   curly braces {} INSIDE the single-quotes '' i.e. '{coolSword}'
+# - minAmtPerOutcome and maxAmtPerOutcome must be either the same or min must be less than max, and
+#   they also work with commands, it is the amount of times the command will be executed.
+# - outcomesToGenerate is the number of items/commands you would like the lootbox to yield.
+# - repeats decides whether the lootbox will yield repeat items/commands, or if each item or command
+#   can only be recieved once. If this is false, the outcomesToGenerate must be less than or equal
+#   to the amount of outcomes there are.
+# - The opening message can use %name% and %lootbox% to indicate where the players name and the
+#   name of the lootbox are used.
+# - The lootboxItem is the material that the lootbox is made of - i.e. 'CHEST' or 'ENDER_CHEST'
+# - ALL COMMANDS ARE EXECUTED BY THE CONSOLE.
+# - Commands may use %name% to indicate where the players name will be used.
+# - Commands may use %amount% to indicate where the amtPerOutcome should be input in a command,
+#   this is useful for things such as giving a user an amount of money between a random amount
+#   using (eco give %name% %amount%).
+####################################################################################################
+lootboxes:
+  winter2019:
+    repeats: false
+    outcomesToGenerateMin: 2
+    outcomesToGenerateMax: 2
+    possibleOutcomes:
+      - '(exp give %name% %amount%)'
+      - 'DIAMOND'
+      - '{coolSword}'
+    minAmtPerOutcome:
+      - 10
+      - 5
+      - 3
+    maxAmtPerOutcome:
+      - 20
+      - 10
+      - 5
+    chancePerOutcome:
+      - 0.5
+      - 0.5
+      - 0.5
+    lootboxItem: 'ENDER_CHEST'
+    lootboxName: '&e&lWinter 2019 Lootbox'
+    lootboxLore:
+      - '&ePossible drops:'
+      - '&7-&610-20 XP'
+      - '&7-&65-10 Diamonds'
+      - '&7-&63-5 coolSwords'
+    particleTypeOnOpening: 'FLAME'
+    soundEffectToPlayOnOpening: 'EXTINGUISH'
+    openingMessage: '%name% just opened a %lootbox%&r, get yours today at website.com!'
+
+  summer2019:
+    repeats: true
+    outcomesToGenerateMin: 1
+    outcomesToGenerateMax: 2
+    possibleOutcomes:
+      - '(exp give %name% %amount%)'
+      - 'BARRIER'
+      - '{coolSwordGold}'
+    minAmtPerOutcome:
+      - 1000
+      - 5
+      - 3
+    maxAmtPerOutcome:
+      - 2000
+      - 10
+      - 5
+    chancePerOutcome:
+      - 0.5
+      - 0.5
+      - 0.5
+    lootboxItem: 'CHEST'
+    lootboxName: '&e&lSummer 2019 Lootbox'
+    lootboxLore:
+      - '&ePossible drops:'
+      - '&7-&61000-2000 XP'
+      - '&7-&65-10 Barrier'
+      - '&7-&63-5 coolSwordGold'
+    particleTypeOnOpening: 'FLAME'
+    soundEffectToPlayOnOpening: 'EXTINGUISH'
+    openingMessage: '%name% just opened a %lootbox%&r, get yours today at website.com!'
+####################################################################################################

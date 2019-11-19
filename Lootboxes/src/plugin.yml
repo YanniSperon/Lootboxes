@@ -1,0 +1,8 @@
+main: com.YanniSperon.MC.LootboxesMain
+name: Lootboxes
+version: 1.0
+author: Yanni Speron
+
+commands:
+  lootbox:
+    aliases: [lb, box, crate, carepackage]
